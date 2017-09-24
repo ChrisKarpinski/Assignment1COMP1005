@@ -49,18 +49,20 @@ def option6(binaryValue):
     decimalValue = 0
     for i in range(len(binaryValue)-1): 
         decimalValue = decimalValue + 2^i * int(binaryValue[len(binaryValue) - 1 - i])
-    
+        
     return binaryValue + " in binary is " + str(decimalValue) + " in decimal (base 10)."
 
+
 def handleError(minVal, maxVal, inputString): 
-    
+    # input validation function to be used to verify all numerical inputs
+    # and catch exceptions
     validOption = False
     
     while(not validOption): 
         
         try: 
             numericalValue = float(input(inputString))
-            if numericalValue < minVal or numericalValue > maxValue: 
+            if numericalValue < minVal or numericalValue > maxVal: 
                 print("Please enter a value between " + str(minVal) + " and " + str(maxVal))
                 validOption = False
             else: 
@@ -68,18 +70,17 @@ def handleError(minVal, maxVal, inputString):
         except: 
             print ("Please enter a numerical value")
             validOption = False
-            
-          
+            # could have also tried if (type(numericalValue) == float) for error
+#def handleError(minVal, inputString): 
+    
 
 
 
 
 name = input("Please enter your name: ")
 
-print("Hello, " + name + ". Welcome to your personal unit converter!")
-print("")
-print("Please choose one of the following unit conversions: ")
-print("")
+print("Hello", name + ". Welcome to your personal unit converter!", end = "\n\n")
+print("Please choose one of the following unit conversions: ", end = "\n\n")
 print("1: Convert percent to letter grade")
 print("2: Convert Kelvin to Celsius")
 print("3: Convert m/s to km/hour")
@@ -89,8 +90,7 @@ print("6: Convert binary decimal")
 print("7: Convert acres to square meters")
 print("8: Convert gallons to litres")
 print("9: Convert PSI (Pounds per square inch) to Pascals")
-print("10: Convert pounds to kilograms")
-print("")
+print("10: Convert pounds to kilograms", end = "\n\n")
 option = input("Select which number conversion you would like: ")
 
 if option == "1": 
@@ -114,12 +114,12 @@ if option == "1":
     print(option1(handleError(0, 100, "Enter the percent grade: ")))
     
 elif option == "2": 
-    kelvinTemp = input("Enter the kelvin temperature: ")
-    print(option2(float(kelvinTemp)))
+    
+    print(option2(handleError(0, "Enter the kelvin temperature")))
     
 elif option == "3": 
     meterPerSecond = input("Enter the speed in m/s: ")
-    print(option3(float(meterPerSecond)))
+    print(option3(handleError(0, "Enter the speed in m/s")))
     
 elif option == "4": 
     usDollar = input("Enter the amount in USD(US dollars): ")
@@ -149,9 +149,14 @@ else:
     print("Invalid input, terminated.....")
     
 print()
-print("-------------------------------------------------")
-print()
-print("Goodbye, " + name + ". Thank you for using unit converter!")
+print("-------------------------------------------------", end = "\n\n")
+print("Goodbye,", name + ". Thank you for using unit converter!")
+
+
+
+
+
+
 
 
 

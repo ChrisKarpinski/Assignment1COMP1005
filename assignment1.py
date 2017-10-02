@@ -30,61 +30,61 @@ def option1(percentGrade):
     else: 
         letter = "F"
         
-    return str(percentGrade) + "% is an " + letter    
+    return letter    
 
 def option2(kelvinTemp): 
     
     celsiusTemp = kelvinTemp - KELVIN_TO_CELSIUS
     
-    return "The kelvin temperature: " + str(kelvinTemp) + " is " + str(celsiusTemp) + " degrees Celsius."
+    return celsiusTemp
  
 def option3(meterPerSecondSpeed): 
     
     kilometerPerHourSpeed = meterPerSecondSpeed*METER_PER_SECOND_TO_KM_PER_HOUR
     
-    return str(meterPerSecondSpeed) + " m/s is " + str(kilometerPerHourSpeed) + " in km/hour."
+    return kilometerPerHourSpeed
 
 def option4(kiloCalories): 
     
     joule = kiloCalories*KILOCALORIES_TO_JOULES
     
-    return str(kiloCalories) + " kiloCalories is " + str(joule) + " joules."
+    return joule
 
 def option5(lightYearDistance): 
     
     parsecDistance = lightYearDistance*LIGHT_YEARS_TO_PARSECS
     
-    return str(lightYearDistance) + " lightyears is " + str(parsecDistance) + " parsecs."
+    return parsecDistance
 
 def option6(decimalValue):
     
     binaryValue = bin(decimalValue)
         
-    return str(decimalValue) + " in decimal (base 10) is " + str(binaryValue) + " in binary (base 2)."
+    return binaryValue
 
 def option7(acres):
     
     squareMeters = acres*ACRES_TO_SQUARE_METERS
         
-    return str(acres) + " acres is " + str(squareMeters) + " square meters."
+    return squareMeters
 
 def option8(gallons):
     
     litres = gallons*GALLONS_TO_LITRES
         
-    return str(gallons) + " gallons is " + str(litres) + " litres."
+    return litres
 
 def option9(psi):
     
     pascals = psi*PSI_TO_PASCALS
         
-    return str(psi) + " psi(pounds per square inch) is " + str(pascals) + " pascals."
+    return pascals
 
 def option10(pounds):
     
     kilograms = pounds/POUNDS_TO_KILOGRAMS
         
-    return str(pounds) + " pounds is " + str(kilograms) + " kilograms."
+    return kilograms
 
 
 # this function below handles all numerical input values for each conversion 
@@ -126,78 +126,85 @@ name = input("Please enter your name: ") # ask for the user's name
 
 # present all the options for the user to select
 print("Hello", name + ". Welcome to your personal unit converter!", end = "\n\n")
-print("Please choose one of the following unit conversions: ", end = "\n\n")
-print("1: Convert percent to letter grade")
-print("2: Convert Kelvin to Celsius")
-print("3: Convert m/s to km/hour")
-print("4: Convert kilocalories to joules")
-print("5: Convert light years to parsecs")
-print("6: Convert decimal to binary")
-print("7: Convert acres to square meters")
-print("8: Convert gallons to litres")
-print("9: Convert PSI (Pounds per square inch) to Pascals")
-print("10: Convert pounds to kilograms", end = "\n\n")
-option = input("Select which number conversion you would like: ")
 
-# below (options 1 to 10) send off the required arguments for the unit conversion 
-# (i.e. string saying what to input, the allowed range of inputs, and that the input
-# must be an integer for binary)
-if option == "1": 
-
-    print(option1(handleError("Enter the percent grade: ", 0, 100)))
+while True: 
+    print("Please choose one of the following unit conversions: ", end = "\n\n")
+    print("1: Convert percent to letter grade")
+    print("2: Convert Kelvin to Celsius")
+    print("3: Convert m/s to km/hour")
+    print("4: Convert kilocalories to joules")
+    print("5: Convert light years to parsecs")
+    print("6: Convert decimal to binary")
+    print("7: Convert acres to square meters")
+    print("8: Convert gallons to litres")
+    print("9: Convert PSI (Pounds per square inch) to Pascals")
+    print("10: Convert pounds to kilograms", end = "\n\n")
+    option = input("Select which number conversion you would like: ")
     
-elif option == "2": 
+    # below (options 1 to 10) send off the required arguments for the unit conversion 
+    # (i.e. string saying what to input, the allowed range of inputs, and that the input
+    # must be an integer for binary)
+    if option == "1": 
+        
+        inputArg = handleError("Enter the percent grade: ", 0, 100)
+        print(inputArg, "%", "is an", option1(inputArg))
+        
+    elif option == "2": 
+        
+        inputArg = handleError("Enter the kelvin temperature: ", minVal = 0)
+        print(inputArg, "Kelvin", "is", option2(inputArg), "degrees Celsius")        
+        
+    elif option == "3": 
+        
+        inputArg = handleError("Enter the speed in m/s: ", minVal = 0)
+        print(inputArg, "m/s", "is", option3(inputArg), "km/hour")        
+        
+    elif option == "4": 
     
-    print(option2(handleError("Enter the kelvin temperature: ", minVal = 0)))
+        inputArg = handleError("Enter the energy in kiloCalories: ", minVal = 0)
+        print(inputArg, "kilocalories", "is", option4(inputArg), "joules")        
+        
+    elif option == "5":
+        
+        inputArg = handleError("Enter the distance in light years: ", minVal = 0)
+        print(inputArg, "light-years", "is", option5(inputArg), "parsecs")        
+        
+    elif option == "6": 
+        
+        inputArg = handleError("Enter a non-negative integer decimal value: ", minVal = 0 ,intRequired = True)
+        print(inputArg, "in decimal", "is", option6(inputArg), "in binary")        
+        
+    elif option == "7":
     
-elif option == "3": 
-    print(option3(handleError("Enter the speed in m/s: ", minVal = 0)))
+        inputArg = handleError("Enter the area in acres: ", minVal = 0)
+        print(inputArg, "acres", "is", option7(inputArg), "meters squared")         
+        
+    elif option == "8": 
     
-elif option == "4": 
-
-    print(option4(handleError("Enter the energy in kiloCalories: ", minVal = 0)))
+        inputArg = handleError("Enter the number of gallons: ", minVal = 0)
+        print(inputArg, "gallons", "is", option8(inputArg), "litres")        
     
-elif option == "5":
-    
-    print(option5(handleError("Enter the distance in light years: ", minVal = 0)))
-    
-elif option == "6": 
-    
-    print(option6(handleError("Enter a non-negative integer decimal value: ", minVal = 0 ,intRequired = True)))
-    
-elif option == "7":
-
-    print(option7(handleError("Enter the area in acres: ", minVal = 0)))
-    
-elif option == "8": 
-
-    print(option8(handleError("Enter the number of gallons: ", minVal = 0)))
-
-    
-elif option == "9": 
-   
-    print(option9(handleError("Enter the volume in PSI (Pounds per Square Inch): ", minVal = 0)))
-    
-elif option == "10":
-    
-    print(option10(handleError("Enter the mass in pounds: ", minVal = 0)))
-    
-else: 
-    # if a valid option for unit conversion was not selected, end the program
-    print("Invalid input, terminated.....")
-    
-# close the program with a goodbye message    
-print()
-print("-------------------------------------------------", end = "\n\n")
-print("Goodbye,", name + ". Thank you for using unit converter!")
-
-
-
-
-
-
-
-
+        
+    elif option == "9": 
+       
+        inputArg = handleError("Enter the volume in PSI (Pounds per Square Inch): ", minVal = 0)
+        print(inputArg, "PSI (pounds per square inch)", "is", option9(inputArg), "pascals")  
+        
+    elif option == "10":
+        
+        inputArg = handleError("Enter the mass in pounds: ", minVal = 0)
+        print(inputArg, "pounds", "is", option10(inputArg), "kilograms")            
+        
+    else: 
+        # if a valid option for unit conversion was not selected, ask to re-select
+        print("Invalid input. Please re-select an option.")
+        continue
+        
+    # close the program with a goodbye message    
+    print()
+    print("-------------------------------------------------", end = "\n\n")
+    print("Goodbye,", name + ". Thank you for using unit converter!")
+    break
 
 
 
